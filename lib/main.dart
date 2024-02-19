@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'customBottom.dart';
+import 'login.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
         ),
         body: Container(
           child: ListView(
-            children: [
-              Center(child: Text("Log in",style: TextStyle(
-                fontSize: 30,
-              ),))
+            children: const [
+              Center(child: Center(
+                child: customBottom(name: "Log in", toWhere:logInPage()),
+              ))
             ],
           ),
          
