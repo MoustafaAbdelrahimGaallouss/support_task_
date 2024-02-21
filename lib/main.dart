@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'customBottom.dart';
-import 'login.dart';
+import 'package:support_task_/login.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -16,16 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Moustafa Abdel-Rahim"),
         ),
-        body: Container(
-          child: ListView(
-            children: const [
-              Center(child: Center(
-                child: customBottom(name: "Log in", toWhere:logInPage()),
-              ))
-            ],
-          ),
-         
-          ),
+        body: const logInPage(),
         ),
     );
 }

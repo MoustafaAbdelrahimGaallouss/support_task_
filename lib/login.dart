@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'customBottom.dart';
+import 'customWidget.dart';
+import 'Face.dart';
+import 'SighUP.dart';
 
 class logInPage extends StatefulWidget {
   const logInPage({super.key});
@@ -9,7 +11,7 @@ class logInPage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<logInPage> {
-bool remmeber_me=false;
+bool remmeberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,75 +19,78 @@ bool remmeber_me=false;
       body: Container(
         child: Padding(
           padding:  EdgeInsets.all(10.0),
-          child: ListView(
-            children: const [
-              SizedBox(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children:  [
+              const SizedBox(
                 height: 10,
               ),
-              Center(
+              const Center(
                 child: Text("Log In",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                 TextField(
-                  keyboardType:TextInputType.emailAddress,
-      decoration:InputDecoration(
-        hintText:"Email",
-        hintStyle: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(50)
-          ),
-          borderSide: BorderSide(color: Colors.blue,
-          width: 10,
-          ),
-          
-        ),
-        
-      ),
-    ),
-    SizedBox(
-                height: 10,
-              ),
-             TextField(
-              keyboardType: TextInputType.visiblePassword,
-      decoration:InputDecoration(
-        
-        hintText:"PassWord",
-      
-        hintStyle: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(50)
-          ),
-          borderSide: BorderSide(color: Colors.blue,
-          width: 10,
-          ),
-          
-        ),
-        
-      ),
-    ), 
+                  CustomInputField(Hint: "Email",
+                   keyboardControalr:TextInputType.emailAddress ,),
+                 SizedBox(
+                height: 50,
+              ),  
+             CustomInputField(Hint: "Password", 
+             keyboardControalr: TextInputType.visiblePassword,), 
               ],),
-              Checkbox(value: , onChanged:(val){
-                setState(() {
-                  val=remmeber_me;
-                });
-              })
+             CheckboxListTile(title: Text("remember me",style: TextStyle(
+              fontWeight: FontWeight.w600
+             ),),
+              value: remmeberMe, onChanged: (val){
+              setState(() {
+                remmeberMe=val!;
+              });
+             }),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomPoot(About: "Log in", 
+                toWhere: Face(),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    MaterialButton(onPressed: (){},
+                    child: Text("forget password?",style:TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                    )),),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Text("Don't have an account?",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),),
+                MaterialButton(onPressed:(){
+                Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(
+                  builder: (context)=>SighUP(),),
+                  );
+              },
+                child: Text("Sign Up",style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.blue,
+                ),),)
+              ],
+            )
             ],
           ),
         ),
@@ -93,3 +98,4 @@ bool remmeber_me=false;
     );
   }
 }
+
